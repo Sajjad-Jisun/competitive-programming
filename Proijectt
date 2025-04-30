@@ -1,0 +1,159 @@
+#include <bits/stdc++.h>
+using namespace std;
+ 
+#define optimize() ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+typedef unsigned long long ll;
+#define vi vector<int>
+#define vl vector<ll>
+#define pb push_back
+#define all(v) v.rbegin(), v.rend()
+#define cy cout << "YES\n"
+#define cn cout << "NO\n"
+#define endl '\n'
+#define fl(s,e) for(ll i=s;i<e;i++)
+
+/*
+Bonus-
+1) Tie breaker added. and it is the who scores maximum numbers first wins
+2) Best performer highlighted
+4)Mulpile program analysis added
+*/
+ 
+ 
+int main() {
+    cout<<"How many tournament do you want to analysis? ";
+    ll t; cin>>t;
+    cout<<endl;
+    while(t--){
+        ll a,b,c,space; 
+    //getiing the informations of forwards
+    cout<<"Number of forwards: ";
+    ll f; cin>>f;
+
+    vector<string>Fname(f);
+    vector<vector<ll>> Goals;
+    vector<pair<ll,ll>> Fsum;
+
+    fl(0,f){
+        cout<<i+1<<" th forward name: ";
+        cin.ignore();
+        getline(cin, Fname[i]);
+        cout<<Fname[i]<<"'s Scores: ";
+        cin>>a>>b>>c; Goals.pb({a,b,c});
+        ll total=a+b+c;
+        Fsum.pb({total,i});
+    }
+    cout<<endl;
+
+    //getting the informations of Goalkeepers;
+    cout<<"Number of Goalkeepers: ";
+    ll g; cin>>g;
+
+    vector<string>Gname(g);
+    vector<vector<ll>> Saves;
+    vector<pair<ll,ll>> Gsum;
+
+    fl(0,g){
+        cout<<i+1<<" th Goalkeeper name: ";
+        cin.ignore();
+        getline(cin, Gname[i]);
+        cout<<Gname[i]<<"'s Goal: ";
+        cin>>a>>b>>c; Saves.pb({a,b,c});
+        ll total=a+b+c;
+        Gsum.pb({total,i});
+    }
+    cout<<endl;
+
+    //getting the informations of Referees;
+    cout<<"Number of Referees: ";
+    ll r; cin>>r;
+
+    vector<string>Rname(r);
+    vector<vector<ll>> Wdecisions;
+    vector<pair<ll,ll>> Rsum;
+
+    fl(0,r){
+        cout<<i+1<<" th Goalkeeper name: ";
+        cin.ignore();
+        getline(cin, Rname[i]);
+        cout<<Rname[i]<<"'s Wrong decisions: ";
+        cin>>a>>b>>c; Wdecisions.pb({a,b,c});
+        ll total=a+b+c;
+        Rsum.pb({total,i});
+    }
+
+    sort(all(Gsum)); sort(all(Rsum)); sort(all(Fsum));
+
+
+    cout<<endl<<endl;
+    cout<<"======================="<<endl<< "Forward Rankings:"<<endl;
+    cout<<"Rank |     Name     | Match 1 | Match 2 | Match 3 | Total Goals"<<endl;
+    cout<<"---------------------------------------------------------------"<<endl;
+  
+    fl(0,f){
+        ll idx=Fsum[i].second;
+        cout<<i+1<<"    ";
+
+        space=14-Fname[idx].size();
+        
+        for(int k=0;k<space/2;k++)cout<<" ";
+        cout<<Fname[idx];
+        for(int k=0;k<space/2;k++)cout<<" ";
+        cout<<"    ";
+
+        for(int j=0;j<3;j++){
+            cout<<Goals[i][j]<<"        ";
+        }
+        cout<<Fsum[i].first<<endl;
+    }
+    cout<<endl<<"#Best Performer : "<<Fname[Fsum[0].second]<<endl;
+
+    cout<<endl;
+    cout<<"======================="<<endl<< "Goalkeeper Rankings:"<<endl;
+    cout<<"Rank |     Name     | Match 1 | Match 2 | Match 3 | Total Saves"<<endl;
+    cout<<"---------------------------------------------------------------"<<endl;
+    fl(0,g){
+        ll idx=Gsum[i].second;
+        cout<<i+1<<"    ";
+
+        space=14-Gname[idx].size();
+        
+        for(int k=0;k<space/2;k++)cout<<" ";
+        cout<<Gname[idx];
+        for(int k=0;k<space/2;k++)cout<<" ";
+        cout<<"    ";
+
+        for(int j=0;j<3;j++){
+            cout<<Saves[i][j]<<"        ";
+        }
+        cout<<Gsum[i].first<<endl;
+    }
+    cout<<endl<<"#Best Performer : "<<Gname[Gsum[0].second]<<endl;
+
+    cout<<endl;
+    cout<<"======================="<<endl<< "Referee Rankings:"<<endl;
+    cout<<"Rank |     Name     | Match 1 | Match 2 | Match 3 | Total Mistakes"<<endl;
+    cout<<"---------------------------------------------------------------"<<endl;
+    fl(0,r){
+        ll idx=Rsum[i].second;
+        cout<<i+1<<"    ";
+
+        space=14-Rname[idx].size();
+        
+        for(int k=0;k<space/2;k++)cout<<" ";
+        cout<<Rname[idx];
+        for(int k=0;k<space/2;k++)cout<<" ";
+        cout<<"    ";
+
+        for(int j=0;j<3;j++){
+            cout<<Wdecisions[i][j]<<"        ";
+        }
+        cout<<Rsum[i].first<<endl;
+    }
+    cout<<endl<<"#Best Performer : "<<Rname[Rsum[r-1].second]<<endl<<endl;
+
+    cout<<"======================="<<endl;
+    }
+
+    return 0;
+}
