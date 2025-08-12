@@ -1,0 +1,34 @@
+1) To cheack a number even or odd : (n&1)==0 -> even
+2) To check if a number power of 2 : n&(n-1)==0 ->Yes
+
+3) To check if kth bit is set or not : n&(n<<k)==0 -> Not set (zero)
+4) To toggle the kth bit : n^(1<<k)
+5) To set the kth bit : n|(1<<k)
+6) To unset the kth bit : n&(1<<k)
+
+7) n/2^k then : n>>k
+8) n*2^k then : n<<k
+
+9) Find out n%2^k : n&((1<<k)-1)
+
+10) Swapping two number without temp : x=(x^y), y=(x^y), x=(x^y)
+
+11) Number of set bits in a + in b -> even, then number of set bit in a^b is also even
+
+12) if(x==a) x=b;
+	else if(x==b)x=a;
+
+	--> x=a^b^x;
+
+13)finding the number of set bits-> __builtin_popcount(x)/__builtin__popcountll(x);
+
+14) TO convert uppercase to lower - 'A' | ' ';
+15) to lower to upper - 'a' & '_'
+
+
+Number of leading zeroes: __builtin_clz(x)
+Number of trailing zeroes : __builtin_ctz(x)
+Number of 1-bits: __builtin_popcount(x) 
+
+finding the position of the highest set bit in l.  int x = log2(l); 
+or, int chk = 64 - __builtin_clzll(l);
